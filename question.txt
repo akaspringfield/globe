@@ -1,0 +1,33 @@
+Here's what we would like you to do for the coding challenge:
+
+Build a small react app which shows a list of countries in a continent. 
+You should make use of the following graphql endpoint: 
+https://countries.trevorblades.com/
+The app should have two pages:
+Continent selection page: 
+This page should have a select dropdown input that allows the user to select 
+from a list of all continents.
+Countries list page: 
+A link that takes you back to the selection page
+Continent information of the selected continent
+Name of the continent and the continent code
+
+List of grid of countries, where each country detail includes
+
+Name
+Currency
+Capital
+Languages
+
+Overall requirements
+The provided solution should follow good frontend practices (UI design and code).
+Routing should be used to allow linking to a specific continent's result page
+Usage of 3rd party UI and component libraries is allowed.
+Usage of typescript and appropriate type annotation on graphql responses is strongly recommended.
+Please deliver the code as a public Github repository. 
+Try to describe in a README.md file what the project does and how to run it. 
+Deploying the app and sharing a link to it is also encouraged. 
+
+
+Feel free to reach out if you have any questions. 
+I look forward to your solution. Good luck!
