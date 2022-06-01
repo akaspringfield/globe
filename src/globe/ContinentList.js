@@ -47,7 +47,7 @@ const UseEffectFetchData = () => {
 
       <h4>Select from dropdown to get more details about the continent</h4>
       <div className="dropdown">
-      <select className="form-select btn" aria-label="Default select example">
+      <select className="form-select btn" aria-label="Default select example" id="continent">
         <option selected>Select A Continent</option>
 
         {countries?.map((continent) => {
