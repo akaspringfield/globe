@@ -318,3 +318,11 @@ p {
   text-transform: capitalize;
   cursor: pointer;
 }
+
+body {
+  background: url("../src/assets/bg.jpg");
+  opacity:86.8;
+  background-size: cover;
+  height:auto; 
+
+}
