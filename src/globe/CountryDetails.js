@@ -16,6 +16,7 @@ function CountryDetails(props) {
           query: `
           query {
             continent(code: "${code}") {
+              name
               countries {
                 name
                 currency
@@ -32,12 +33,12 @@ function CountryDetails(props) {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data.data.continent.countries)
-        setCountrieslist(data.data.continent.countries)
+        //console.log(data.data.continent)
+        setCountrieslist(data.data.continent)
       })
   
       setListapi(listapi);
-      console.log(listapi);
+      //console.log(listapi);
     };
   
     useEffect(() => {
@@ -46,7 +47,10 @@ function CountryDetails(props) {
   
   return (
     <div>
-      <h3>Country Details</h3>
+      <h6>Continent Code : {code}  Name : {countrieslist.name}</h6>
+
+      <br/>
+      <h3> Country Details</h3>
       <Link to={`/`}><button className='btn'>Home</button></Link>           
       <ul className='users'>
       <table className="table table-sm" >
@@ -62,7 +66,7 @@ function CountryDetails(props) {
         </tr>
       </thead>          
 
-         {countrieslist?.map((continent) => {
+         {countrieslist.countries?.map((continent) => {
           const { id , name, currency, capital, languages } = continent;
 
           return (
