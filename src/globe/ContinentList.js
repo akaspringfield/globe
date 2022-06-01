@@ -36,7 +36,6 @@ const UseEffectFetchData = () => {
   }, []);
 
 
-  //<Link to={`/country/${code}`}></Link>
   const changeMessage = (code) => {
     alert(code)
   };
@@ -54,6 +53,8 @@ const UseEffectFetchData = () => {
            console.log(continent);
           const { code, name } = continent;
           return (
+              //<Link to={`/country/${code}`}></Link>
+
             <option key={ code } onchange={() => changeMessage(code)}>{ name }</option>
           );
         })} 
