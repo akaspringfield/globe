@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
 function CountryDetails(props) {
-    // ocde is parsed continent code
-    const {code} =props.match.params
-    const [listapi, setListapi] = useState([]);
+    const {code} =props.match.params     // code : value of continent passed from continentlist
+    const [listapi, setListapi] = useState([]);   // listing from api value
     const [countrieslist, setCountrieslist] = useState([])
 
-    const getUsers = async () => {
-      // API calling for listing out countries
+    const getContrydetails = async () => {
+    // Calling GraphQL API with keys for getting country information
       const listapi = await fetch('https://countries.trevorblades.com/', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -33,24 +33,23 @@ function CountryDetails(props) {
       })
       .then(res => res.json())
       .then(data => {
-        //console.log(data.data.continent)
         setCountrieslist(data.data.continent)
       })
-  
       setListapi(listapi);
-      //console.log(listapi);
     };
-  
+    
+    // Getting values to populate in table
     useEffect(() => {
-         getUsers();
+         getContrydetails();
     }, []);
   
   return (
     <div>
-      <h6>Continent Code : {code}  Name : {countrieslist.name}</h6>
+      <h6>Continent Code : { code }  and Name : { countrieslist.name }</h6>
 
       <br/>
       <h3> Country Details</h3>
+      {/* Table to list countries name currency capital and language */}
       <Link to={`/`}><button className='btn'>Home</button></Link>           
       <ul className='users'>
       <table className="table table-sm" >
@@ -68,7 +67,6 @@ function CountryDetails(props) {
 
          {countrieslist.countries?.map((continent) => {
           const { id , name, currency, capital, languages } = continent;
-
           return (
             <tbody>  
               <tr>

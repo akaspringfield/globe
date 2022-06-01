@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-// use effect
+
+// Use effect function
 const UseEffectFetchData = () => {
-  const [continentname, setContinentname] = useState('EU');
-  const [continent, setContinent] = useState([])
+  const [continentname, setContinentname] = useState('none');   // Continent name 
+  const [continent, setContinent] = useState([]);   // variable to assign continent list from API 
+
   const getContinents = async () => {
-    // calling api with keys 
+    // Calling GraphQL API with keys for getting continent name
     const listapi = await fetch('https://countries.trevorblades.com/', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
@@ -26,43 +28,43 @@ const UseEffectFetchData = () => {
     )
   };
   
+  // Invocking use effect function
   useEffect(() => {
     getContinents();
   }, []);
 
-
+  // On click function to set continent name
   const changeMessage = (codes) => {
-    console.log("You Selected "+codes)
     setContinentname(codes);
-    console.log("__"+continentname);
   };
 
   return (
     <>
-      <h3>One touch point to know details about the globe</h3>
-      <h4>Select from dropdown to get more details about the continent</h4><br/>
-
+      <h3>One touch point to know countries accross the globe</h3>
+      <h4>Select from dropdown to get list of countries accross in different continent</h4><br/>
       <div className="dropdown">
-        <select className="form-select " aria-label="Default select example" id="selconti">
-          <option selected value = "select">Select A Continent</option>
-
+        <select onChange={(e) =>setContinentname(e.target.value)} className="form-select " aria-label="Default select example" id="selconti">
+          <option selected value = "select" >Select A Continent</option>
           {continent?.map((continent) => {
             const { code, name } = continent;
             return (
-              <option value = { code }>
+              <option value = { code } >
                 { name }
               </option>
             );
-          })} 
-
+          })}
         </select>
-      </div>
-      {console.log(">>"+continentname)}
-      <Link to={`/country/${ continentname }`}>              
-        <button className="btn" onClick={() => changeMessage(document.getElementById('selconti').value)}>
-          SEARCH
-        </button>
-      </Link>
+      </div>  
+
+        {/* Select box with button hidden for false search of continent */}
+
+        {continentname!=="none" && 
+        <Link to={`/country/${ continentname }`}> 
+          <button className="btn">
+            SEARCH
+          </button>
+        </Link>
+        }
     </>
   );
 };
